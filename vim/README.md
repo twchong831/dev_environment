@@ -67,7 +67,7 @@ Plugin 'valloric/youcompleteme'           " C++, Python Autocomplete.
 Plugin 'majutsushi/tagbar'                " Function navigation. must be installed ctags
 Plugin 'nathanaelkane/vim-indent-guides'  " Indentation
 ""Plugin 'AutoClose'                        " [] {} Automatric parenthesis. {} ()
-Plugin 'Raimondi/delimitMate'				" [] {} automatic
+Plugin 'Raimondi/delimitMate'    " [] {} automatic
 
 call vundle#end()            " required
 "filetype plugin indent on    " required
@@ -121,14 +121,14 @@ set autoindent
 "기존
 syn on
 set hlsearch
-"set guifont=JetBrains_Mono:h15			" windows
-set guifont=JetBrains\ Mono\ Light\ 14	" Ubuntu
+"set guifont=JetBrains_Mono:h15   " windows
+set guifont=JetBrains\ Mono\ Light\ 14 " Ubuntu
 " 붙여넣기 설정
 set paste
 set mouse-=a
 " 한글 입력 설정
-set encoding=utf-8		"linux
-set termencoding=utf-8	"linux
+set encoding=utf-8  "linux
+set termencoding=utf-8 "linux
 "set encoding=cp949
 "set fileencodings=utf-8
 "set langmenu=cp949
@@ -191,8 +191,8 @@ vim을 재시동하여 :PluginInstall 실행
 - PluginSearch 안될때
   - 이전에는 다른 사이트에서 사람들이 올렸었는데
   - 현재는 대부분 git을 이용하여 배포하고 있음
-  - curl -v -o ~/.vim/bundle/.vundle/script-names.vim-scripts.org.json https://raw.githubusercontent.com/i-cooltea/resource/master/vim-api_scripts.json
-  - wget https://raw.githubusercontent.com/i-cooltea/resource/master/vim-api_scripts.json -v -O ~/.vim/bundle/.vundle/script-names.vim-scripts.org.json
+  - curl -v -o ~/.vim/bundle/.vundle/script-names.vim-scripts.org.json <https://raw.githubusercontent.com/i-cooltea/resource/master/vim-api_scripts.json>
+  - wget <https://raw.githubusercontent.com/i-cooltea/resource/master/vim-api_scripts.json> -v -O ~/.vim/bundle/.vundle/script-names.vim-scripts.org.json
 - 해당 경로의 파일로 대치해주면 플러그인 서치가 동작하는 것을 확인
 
 [플러그인 관련 자료](https://edward0im.github.io/technology/2020/09/17/vim/)
@@ -265,11 +265,70 @@ ln -s /Applications/MacVim.app /usr/local/Cellar/macvim/8.2-171
 
 ```makefile
 " 한글 입력 설정
-"set encoding=utf-8		"linux
-"set termencoding=utf-8	"linux
+"set encoding=utf-8  "linux
+"set termencoding=utf-8 "linux
 set encoding=cp949
 set fileencodings=utf-8
 set langmenu=cp949
 ```
 
 - 윈도우에서는 utf-8이 정상 동작하지 않아서 위 코드와 같이 세팅
+
+## neovim
+
+### install
+
+[homepage](https://neovim.io/)
+
+#### mac OS
+
+```powershell
+brew install neovim
+```
+
+### setting
+
+```powershell
+# make config file
+mkdir -p ~/.config/nvim
+touch ~/.config/nvim/init.vim
+```
+
+#### plugins
+
+[vim-plug](https://github.com/junegunn/vim-plug)
+
+- vundle 지원이 끝나 새로운 플러그인 관리 툴이 필요
+- vim-plug를 설치하여 관리
+
+- neovim에서 vim-plug를 사용하기 위한 설정
+- 이를 터미널 상에서 실행
+
+```powershell
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+```
+
+##### init.vim 설정
+
+```bash
+call pllug#begin('plugin-path')
+# in Max OS 
+# plugin-path is '~/.vim/bundle'
+# Plug 'plug-name'
+
+Plug 'VundleVim/Vundle.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'git://git.wincent.com/command-t.git'
+Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plug 'vim-airline/vim-airline'
+Plug 'scrooloose/nerdtree'
+Plug 'airblade/vim-gitgutter'
+Plug 'scrooloose/syntastic'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'nanotech/jellybeans.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'dart-lang/dart-vim-plugin' "for dart and flutter
+
+call plug#end()
+```
