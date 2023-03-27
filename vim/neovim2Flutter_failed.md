@@ -58,6 +58,11 @@ brew isntall --cask font-hack-nerd-font
 - NERDtree hightlight 플러그인 사용 시 해당 오류가 발생하며
 - 아이콘이 출력되지 않음 -> 별도의 문제
   - 이는 NERD font 사용으로 해결할 수 있음
+- 옵션 추가
+
+```vim
+let g:NERDTreeLimitedSyntax = 1
+```
 
 ## Coc Config
 
@@ -66,6 +71,8 @@ brew isntall --cask font-hack-nerd-font
 ```vim
 :CocConfig
 ```
+
+[CocConfig](https://www.google.com/search?q=vim-go&rlz=1C5CHFA_enKR1017KR1018&oq=vim-go&aqs=chrome..69i57.301j0j7&sourceid=chrome&ie=UTF-8)
 
 - path : ~/.config/nvim/coc-settings.json
 
@@ -91,4 +98,30 @@ brew isntall --cask font-hack-nerd-font
     "trace.server": "verbose"
   },
 }
+```
+
+## TSInstall
+
+```vim
+:TSInstall all
+:TSUpdate
+```
+
+## ripgrep
+
+```bash
+brew install ripgrep
+```
+
+## fd
+
+```bash
+brew install fd
+```
+
+## perl
+
+```bash
+cpan App::cpanmnus
+sudo cpanm module
 ```
