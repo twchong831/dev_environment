@@ -1,10 +1,72 @@
 # Termianl Settings
 
+## windows
+
+### fishShell
+
+[fish shell](https://fishshell.com/)
+
+#### install
+
+~~1. [Cygwin](https://cygwin.com/) 설치~~
+
+1. power shell 또는 cmd 창에서 wsl 동작
+
+  ```bash
+  sudo apt-get update
+  sudo apt-get upgrade
+  ```
+
+2. fish shell 설치
+
+  ```bash
+  sudo apt-get install fish
+  ```
+
+3. power shell 또는 cmd에서 다음 명령어 실행
+
+  ```bash
+  bash - cfish -cur_console:p
+  ```
+
+4. 설정 항목에서 다음과 같이 세팅
+
+![set01](./image/fishShell-window_setting_01.PNG)
+![set02](./image/fishShell-window_setting_02.PNG)
+
+5. oh-my-fish 설치
+
+  ```bash
+  curl -L https://get.oh-my.fish | fish
+  ```
+
+6. 테마 설정
+
+[테마 github](https://github.com/oh-my-fish/oh-my-fish/blob/master/docs/Themes.md)
+
+```bash
+  omf install [theme-name]
+ ```
+
+7. Vscode terminal 변경
+   - [crtl] + , 로 세팅 창을 엶
+   - default profile을 검색해서
+   - windows의 default terminal을 wsl로 변경
+  ![set03-failed](./image/fishShell-window_setting_03.PNG)
+   - 하지만 이는 내 환경에서는 동작하지 않음
+   - 이를 해결하기 위해 setting.json을 수정
+
+8. 7번 항목이 안될 경우 setting.json 파일을 수정
+   - [F1] 키
+   - open setting.json
+   - terminal.integrated.profiles.windows에서 Ubuntu(WSL)의 args 값을 변경
+  ![set04](./image/fishShell-window_setting_04.PNG)
+
+9. vscode의 터미널 창이 변경되는 것을 확인할 수 있음
+
 ## UBUNTU
 
 ## MAC
-
-### brew
 
 [홈페이지](https://brew.sh/index_ko)
 
