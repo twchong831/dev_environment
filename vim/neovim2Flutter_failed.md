@@ -125,3 +125,16 @@ brew install fd
 cpan App::cpanmnus
 sudo cpanm module
 ```
+
+## languageClient
+
+- ERROR : No pre-built binary available for Darwin arm64. cargo is not available. Abort.
+- and not installed using :PlugInstall
+
+### solution
+
+```bash
+brew install rust
+```
+
+- reinstall
