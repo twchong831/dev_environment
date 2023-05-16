@@ -24,53 +24,56 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 " set the runtime path to include Vundle and initialize
+if has("mac")
+ "Mac
+ "set rtp+=~/.vim/bundle/Vundle.vim
+ call plug#begin()
+elseif has("win32")
+ "all windows
+ set rtp+=$HOME/.vim/bundle/Vundle.vim/
+ call vundle#begin('$HOME/.vim/bundle/')
+elseif has("win32unix")
+ "Cygwin
+elseif has("bsd")
+ "BSD-based, greeBSD
+elseif has("linux")
+ "Linux
+ set rtp+=~/.vim/bundle/Vundle.vim
+ call vundle#begin()
+end
+
 "LINUX
-"set rtp+=~/.vim/bundle/Vundle.vim
-"call vundle#begin()
-
 "WINDOWS
-"set rtp+=$HOME/.vim/bundle/Vundle.vim/
-"call vundle#begin('$HOME/.vim/bundle/')
-
-"Linux
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
 " alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+"call vundle#begin('~/.vim/bundle')
 " let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+Plug 'VundleVim/Vundle.vim'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 " plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
 " Git plugin not hosted on GitHub
-Plugin 'git://git.wincent.com/command-t.git'
+Plug 'git://git.wincent.com/command-t.git'
 " git repos on your local machine (i.e. when working on your own plugin),
 "Plugin 'file:///home/jjeaby/Dev/tools/vim-plugin'
 " The sparkup vim script is in a subdirectory of this repo called vim.
 " Pass the path to set the runtimepath properly.
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Install L9 and avoid a Naming conflict if you've already installed a
 " different version somewhere else.
 " Plugin 'ascenator/L9', {'name': 'newL9'}
 " All of your Plugins must be added before the following line
-Plugin 'vim-airline/vim-airline'
-Plugin 'scrooloose/nerdtree'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'scrooloose/syntastic'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'nanotech/jellybeans.vim'
-Plugin 'valloric/youcompleteme'           " C++, Python Autocomplete.
-Plugin 'majutsushi/tagbar'                " Function navigation. must be installed ctags
-Plugin 'nathanaelkane/vim-indent-guides'  " Indentation
-""Plugin 'AutoClose'                        " [] {} Automatric parenthesis. {} ()
-Plugin 'Raimondi/delimitMate'    " [] {} automatic
+Plug 'vim-airline/vim-airline'
+Plug 'scrooloose/nerdtree'
+Plug 'airblade/vim-gitgutter'
+Plug 'scrooloose/syntastic'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'ghifarit53/tokyonight-vim'
+"Plugin 'Tagbar'
+call plug#end()            " required
 
-call vundle#end()            " required
-"filetype plugin indent on    " required
 "NERDTree ON 단축키를 "\nt"로 설정
 map <Leader>nt <ESC>:NERDTree<CR>
 let NERDTreeShowHidden=1
@@ -79,7 +82,6 @@ let g:ctrlp_custom_ignore = {
   \ 'dir':  '\.git$\|vendor$',
     \ 'file': '\v\.(exe|so|dll)$'
 \ }
-color jellybeans
 
 " Tag List 환경설정
 filetype on                                 "vim filetype on
@@ -89,9 +91,8 @@ nmap <C-J> <C-W>j                           "아래 창으로 이동
 nmap <C-K> <C-W>k                           "윗 창으로 이동
 nmap <C-L> <C-W>l                           "오른쪽 창으로 이동
 
-nmap <F1> <ESC> :set mouse=a<CR>
 nmap <F2> :NERDTreeToggle<CR>
-nmap <F3> :Tagbar<CR>
+nmap <F3> :TagbarToogle<CR>
 
 nmap <F5> : make all<CR>
 
@@ -115,47 +116,47 @@ set softtabstop=4
 set smarttab
 "set expandtab
 set nobackup    "기존
-"color
-colorscheme darkblue
-set autoindent
+
 "기존
 syn on
 set hlsearch
-"set guifont=JetBrains_Mono:h15   " windows
-set guifont=JetBrains\ Mono\ Light\ 14 " Ubuntu
+set guifont=JetBrains\ Mono:h15
+"set guifont?
+if has("mac")
+ set guifont=JetBrains\ Mono:h15
+ "Mac
+elseif has("win32")
+ "all windows
+elseif has("win32unix")
+ "Cygwin
+elseif has("bsd")
+ "BSD-based, greeBSD
+elseif has("linux")
+ "Linux
+ set guifont=JetBrains\ Mono\ 20
+end
 " 붙여넣기 설정
 set paste
-set mouse-=a
+set clipboard=unnamedplus
+set mouse=a
 " 한글 입력 설정
-set encoding=utf-8  "linux
-set termencoding=utf-8 "linux
-"set encoding=cp949
-"set fileencodings=utf-8
-"set langmenu=cp949
+if has("mac")
+ "Mac
+elseif has("win32")
+ "all windows
+ set encoding=cp949
+ set fileencodings=utf-8
+ set langmenu=cp949
+elseif has("win32unix")
+ "Cygwin
+elseif has("bsd")
+ "BSD-based, greeBSD
+elseif has("linux")
+ "Linux
+ set encoding=utf-8  "linux
+ set termencoding=utf-8 "linux
+end
 
-"들여쓰기
-" for indent guide -- 잘 안보임?
-let g:indent_guides_enable_on_vim_startup = 0
-let g:indentguides_spacechar = '┆'
-let g:indentguides_tabchar = '|'
-let g:indent_guides_start_level=1
-let g:indent_guides_guide_size=6
-
-"set Raimondi/delimitMate
-let delimitMate_expand_cr=1
-" Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-let g:syntastic_cpp_compiler = 'g++'
-let g:syntastic_cpp_compiler_options = "-std=c++11 -Wall -Wextra -Wpedantic"
-let g:syntastic_c_compiler_options = "-std=c11 -Wall -Wextra -Wpedantic"
 " 커서가 있는 줄을 강조함
 set cursorline
 " 상태바 표시를 항상한다
@@ -176,6 +177,11 @@ augroup markdown
     autocmd BufRead,BufNew *.md setf markdown
 augroup END
 
+set termguicolors
+let g:tokyonight_style = 'storm' " available: night, storm
+let g:tokyonight_enable_italic = 1
+let g:tokyonight_menu_selection_background = 'red'
+colorscheme tokyonight
 ```
 
 ## plugin 설치 방법
