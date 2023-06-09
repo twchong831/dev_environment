@@ -47,32 +47,32 @@ end
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/.vim/bundle')
 " let Vundle manage Vundle, required
-Plug 'VundleVim/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
-Plug 'tpope/vim-fugitive'
+Plugin 'tpope/vim-fugitive'
 " plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
 " Git plugin not hosted on GitHub
-Plug 'git://git.wincent.com/command-t.git'
+Plugin 'git://git.wincent.com/command-t.git'
 " git repos on your local machine (i.e. when working on your own plugin),
 "Plugin 'file:///home/jjeaby/Dev/tools/vim-plugin'
 " The sparkup vim script is in a subdirectory of this repo called vim.
 " Pass the path to set the runtimepath properly.
-Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Install L9 and avoid a Naming conflict if you've already installed a
 " different version somewhere else.
 " Plugin 'ascenator/L9', {'name': 'newL9'}
 " All of your Plugins must be added before the following line
-Plug 'vim-airline/vim-airline'
-Plug 'scrooloose/nerdtree'
-Plug 'airblade/vim-gitgutter'
-Plug 'scrooloose/syntastic'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'ghifarit53/tokyonight-vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'scrooloose/nerdtree'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'scrooloose/syntastic'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'ghifarit53/tokyonight-vim'
 "Plugin 'Tagbar'
-call plug#end()            " required
+call vundle#end()            " required
 
 "NERDTree ON 단축키를 "\nt"로 설정
 map <Leader>nt <ESC>:NERDTree<CR>
@@ -120,7 +120,11 @@ set nobackup    "기존
 "기존
 syn on
 set hlsearch
-set guifont=JetBrains\ Mono:h15
+
+"color
+colorscheme darkblue
+set autoindent
+
 "set guifont?
 if has("mac")
  set guifont=JetBrains\ Mono:h15
@@ -156,6 +160,43 @@ elseif has("linux")
  set encoding=utf-8  "linux
  set termencoding=utf-8 "linux
 end
+
+"들여쓰기
+let g:indentLine_color_gui = '#FFF000'
+let g:indentLine_color_term = 100
+let g:indentLine_char = '¦'
+let g:indentLine_first_char = ''
+let g:indentLine_showFirstIndentLevel = 0
+let g:indentLine_enabled = 1
+let g:indentLine_fileTypeExclude = ['help', 'nerdtree', 'text', 'sh']
+let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*']
+let g:indentLine_maxLines = 3000
+"nnoremap \il :IndentLinesToggle
+
+
+"set Raimondi/delimitMate
+let delimitMate_expand_cr=1
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_cpp_compiler = 'g++'
+let g:syntastic_cpp_compiler_options = "-std=c++11 -Wall -Wextra -Wpedantic"
+let g:syntastic_c_compiler_options = "-std=c11 -Wall -Wextra -Wpedantic"
+
+" vim-multiple-cursor
+let g:multi_cursor_use_default_mapping=0
+" Default mapping
+let g:multi_cursor_next_key='<C-n>'
+let g:multi_cursor_prev_key='<C-p>'
+let g:multi_cursor_skip_key='<C-x>'
+let g:multi_cursor_quit_key='<Esc>'
 
 " 커서가 있는 줄을 강조함
 set cursorline
