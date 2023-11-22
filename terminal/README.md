@@ -135,6 +135,22 @@ plugins=(
 )
 ```
 
+#### vscode 연동
+
+- 명령어 추가
+  
+```bash
+# ~/.zshrc
+vscode() { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
+```
+
+- vscode 실행
+
+```bash
+cd [dir]
+vscode .
+```
+
 ### fig
 
 [홈페이지](https://fig.io/)
