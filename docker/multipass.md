@@ -97,6 +97,72 @@ multipass purge [가상머신 이름]
 - 아직 남아있는 것을 확인할 수 있음
 - purge까지 수행해야 완전히 삭제
 
+### set DEV env
+
+#### sources.list
+
+- mac에서 구동하기 때문에 코어가 arm64라서
+- 특정 app을 설치하지 못하는 문제 발생
+
+```bash
+sudo vim /etc/apt/sources.list
+
+# add list in sources.list
+# kinetic 
+
+deb http://ports.ubuntu.com/ubuntu-ports jammy main restricted universe multiverse
+deb http://ports.ubuntu.com/ubuntu-ports jammy-updates main restricted universe multiverse
+deb http://ports.ubuntu.com/ubuntu-ports jammy-backports main restricted universe multiverse
+deb http://ports.ubuntu.com/ubuntu-ports jammy-security main restricted universe multiverse
+deb http://archive.canonical.com/ubuntu jammy partner
+
+# save & exit
+
+sudo apt-get update
+```
+
+#### zsh
+
+```bash
+sudo apt-get install zsh
+```
+
+- oh-my-zsh 설치
+
+```bash
+sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
+- power level10k theme 설치
+
+```bash
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
+```
+
+- Plugin : zsh-autosuggestions 
+
+```bash
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+```
+
+- Plugin : zsh-syntax-highlighting
+
+```bash
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+```
+
+- add plugin in zshrc
+
+```bash
+# vim ~/.zshrc
+
+plugins = (
+	git
+	zsh-autosuggestions
+	zsh-syntax-highlighting
+)
+```
+
 ## ubuntu GUI
 
 ### install ui tools
