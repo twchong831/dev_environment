@@ -84,7 +84,7 @@ multipass umount [가상머신 이름]
 
 - 가상머신 off
 
-#### deleted vitual mechine
+### deleted vitual mechine
 
 ```bash
 multipass umount [가상머신 이름]
@@ -96,6 +96,25 @@ multipass purge [가상머신 이름]
 - delete 후 list로 목록을 확인하면
 - 아직 남아있는 것을 확인할 수 있음
 - purge까지 수행해야 완전히 삭제
+
+### ERROR
+
+```bash
+multipass ls
+# list failed: The client is not authenticated with the Multipass service.
+# Please use 'multipass authenticate' before proceeding.
+
+sudo launchctl unload /Library/LaunchDaemons/com.canonical.multipassd.plist
+
+sudo rm /var/root/Library/Application\ Support/multipassd/authenticated-certs/multipass_client_certs.pem
+
+sudo cp ~/Library/Application\ Support/multipass-client-certificate/multipass_cert.pem /var/root/Library/Application\ Support/multipassd/authenticated-certs/multipass_client_certs.pem
+
+sudo launchctl load /Library/LaunchDaemons/com.canonical.multipassd.plist
+```
+
+- instance가 실행되지 않는 문제...
+- 방화벽을 off하니 정상동작 함
 
 ### set DEV env
 
@@ -161,6 +180,20 @@ plugins = (
 	zsh-autosuggestions
 	zsh-syntax-highlighting
 )
+```
+
+#### docker
+
+- docker ps -a permission error
+
+```bash
+sudo chmod 666 /var/run/docker.sock
+```
+
+- delete all containers
+
+```bash
+docker rm $(docker ps --filter 'status=exited' -a -q)
 ```
 
 ## ubuntu GUI
