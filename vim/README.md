@@ -1,24 +1,35 @@
-# VIM 사용법
+# VIM
 
-## Mac에서 비주얼 vim 사용하자
+## neovim
+
+- 최신 버전 설치 필요
+
+[LINK](https://github.com/neovim/neovim/blob/master/INSTALL.md)
+
+```bash
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
+# sudo rm -rf /opt/nvim
+sudo tar -C /opt -xzf nvim-linux64.tar.gz
+```
+
+```bash
+# ~/.zshrc
+export PATH="$PATH:/opt/nvim-linux64/bin"
+```
+
+### nvchad
+
+```bash
+git clone https://github.com/NvChad/starter ~/.config/nvim && nvim
+```
+
+![nvchad init](image/nvchad.png)
+
+## vim
 
 - mvim 설치
 
-## 창을 분리하여 열기
-
-- [:sp] + [파일명]
-- [:sp] + [ctrl] + [d] : 현재 폴더의 파일명을 확인할 수 있음
-
-## 복사 붙여넣기
-
-- 명령어 모드에서 [yy] : 한줄을 복사
-- 이후, [p]를 누르게 되면 해당 내용이 복사됨.
-
-## 자동완성
-
-- [ctrl] + p
-
-## vimrc 설정
+## vimrc
 
 ```makefile
 set nocompatible              " be iMproved, required
@@ -257,41 +268,56 @@ python3 install.py --all
 
 [github](https://github.com/ycm-core/YouCompleteMe#linux-64-bit)
 
-## 파일트리 출력
+## COMMAND
 
-- ​[\nt] : 플러그인 설치 후 사용할 수 있음
-- : 입력 없이 해당 명령어를 입력하게 되면 현재 파일 트리를 출력하여 줌
+- 창을 분리하여 열기
 
-## 분할된 창 이동
-
-**ctrl + [w]**  or **ctrl + [h]** or **ctrl + [j]** or **ctrl + [k]** or **ctrl + [l]**
-
-## 드래그 하기
-
-- 커맨드모드 상에서 v 입력 후 포인터를 이동하게 되면 선택
-
-## 수직 분할
-
-:vs
-
-## macvim 어플리케이션 항목에 추가
-
-```powershell
-mv /usr/local/Cellar/macvim/8.2-171/MacVim.app /Applications
-ln -s /Applications/MacVim.app /usr/local/Cellar/macvim/8.2-171
+```bash
+:sp + [file_name]
+:sp + [ctrl] + d : 현재 폴더의 파일명 확인
 ```
 
-- 어플리케이션 폴더에 추가함으로서
-- 동작 시, fn키 고정 기능을 활성화하기 위해
-- [시스템 환경 설정] - [키보드] - [단축키] - [기능 키] 항목에 macvim을 추가하면
-- 동작 시 터치 바에 펑션키가 활성화되는 것을 볼 수 있음
+- copy & paste
 
-## makefile로 컴파일하기
+```bash
+# 한줄을 복사
+yy
 
-- nmap <F5> : make all<CR>
-- vimrc 파일에 위와 같은 명령어를 추가해놓으면 F5 키를 통해 makefile을 통해 바로 컴파일을 실행할 수 있음
+# 복사한 줄을 붙여넣기
+p
+```
 
-## 명령어
+- 자동완성
+
+```bash
+[ctrl] + p
+```
+
+- 파일트리 출력
+
+```bash
+\nt # 플러그인 설치 후 사용할 수 있음
+# 입력 없이 해당 명령어를 입력하게 되면 현재 파일 트리를 출력하여 줌
+```
+
+- 분할된 창 이동
+
+```bash
+[ctrl] + w
+[ctrl] + h 
+[ctrl] + j
+[ctrl] + k
+[ctrl] + l
+```
+
+- 드래그 하기
+- 커맨드모드 상에서 v 입력 후 포인터를 이동하게 되면 선택
+
+- 수직 분할
+
+```bash
+:vs
+```
 
 - r : 현재 커서에 있는 글자 바꾸기
 - s : 현재 커서 글자 바꾸고 입력 모드
@@ -304,6 +330,23 @@ ln -s /Applications/MacVim.app /usr/local/Cellar/macvim/8.2-171
 ![명령어2](./image/vim명령어단축키.jpeg)
 
 ![명령어3](./image/vim단축키2.png)
+
+### macvim 어플리케이션 항목에 추가
+
+```powershell
+mv /usr/local/Cellar/macvim/8.2-171/MacVim.app /Applications
+ln -s /Applications/MacVim.app /usr/local/Cellar/macvim/8.2-171
+```
+
+- 어플리케이션 폴더에 추가함으로서
+- 동작 시, fn키 고정 기능을 활성화하기 위해
+- [시스템 환경 설정] - [키보드] - [단축키] - [기능 키] 항목에 macvim을 추가하면
+- 동작 시 터치 바에 펑션키가 활성화되는 것을 볼 수 있음
+
+### makefile로 컴파일하기
+
+- nmap <F5> : make all<CR>
+- vimrc 파일에 위와 같은 명령어를 추가해놓으면 F5 키를 통해 makefile을 통해 바로 컴파일을 실행할 수 있음
 
 ## 윈도우 설정 방법
 
@@ -320,62 +363,3 @@ set langmenu=cp949
 ```
 
 - 윈도우에서는 utf-8이 정상 동작하지 않아서 위 코드와 같이 세팅
-
-## neovim
-
-### install
-
-[homepage](https://neovim.io/)
-
-#### mac OS
-
-```powershell
-brew install neovim
-```
-
-### setting
-
-```powershell
-# make config file
-mkdir -p ~/.config/nvim
-touch ~/.config/nvim/init.vim
-```
-
-#### plugins
-
-[vim-plug](https://github.com/junegunn/vim-plug)
-
-- vundle 지원이 끝나 새로운 플러그인 관리 툴이 필요
-- vim-plug를 설치하여 관리
-
-- neovim에서 vim-plug를 사용하기 위한 설정
-- 이를 터미널 상에서 실행
-
-```powershell
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-```
-
-##### init.vim 설정
-
-```bash
-call pllug#begin('plugin-path')
-# in Max OS 
-# plugin-path is '~/.vim/bundle'
-# Plug 'plug-name'
-
-Plug 'VundleVim/Vundle.vim'
-Plug 'tpope/vim-fugitive'
-Plug 'git://git.wincent.com/command-t.git'
-Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
-Plug 'vim-airline/vim-airline'
-Plug 'scrooloose/nerdtree'
-Plug 'airblade/vim-gitgutter'
-Plug 'scrooloose/syntastic'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'nanotech/jellybeans.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'dart-lang/dart-vim-plugin' "for dart and flutter
-
-call plug#end()
-```
